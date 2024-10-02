@@ -1,0 +1,70 @@
+SwitchTR1#show run
+Building configuration...
+
+Current configuration : 1897 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SwitchTR1
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+username cisco secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/3 - FastEthernet0/4
+ switchport access vlan 2
+ switchport mode access
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6 - FastEthernet0/7
+ switchport access vlan 5
+ switchport mode access
+!
+interface FastEthernet0/8 - FastEthernet0/9
+ switchport access vlan 6
+ switchport mode access
+!
+interface FastEthernet0/10
+ switchport access vlan 7
+ switchport mode access
+!
+interface FastEthernet0/11 - FastEthernet0/12
+ switchport access vlan 8
+ switchport mode access
+!
+interface FastEthernet0/13 - FastEthernet0/15
+ switchport access vlan 9
+ switchport mode access
+!
+interface FastEthernet0/16 - FastEthernet0/24
+!
+interface GigabitEthernet0/1 - GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip default-gateway 172.24.46.65
+!
+line con 0
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end

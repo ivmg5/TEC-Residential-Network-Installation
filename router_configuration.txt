@@ -1,0 +1,82 @@
+RouterResi#show run
+Building configuration...
+
+Current configuration : 1419 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname RouterResi
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+ip dhcp pool lan10
+ network 172.24.32.0 255.255.248.0
+ default-router 172.24.39.254
+ dns-server 8.8.8.8
+!
+ip cef
+no ipv6 cef
+!
+username cisco secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+license udi pid CISCO2811/K9 sn FTX1017F34M-
+!
+spanning-tree mode pvst
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.2
+ encapsulation dot1Q 2
+ ip address 172.24.46.158 255.255.255.224
+!
+interface FastEthernet0/0.5
+ encapsulation dot1Q 5
+ ip address 172.24.45.254 255.255.255.128
+!
+interface FastEthernet0/0.6
+ encapsulation dot1Q 6
+ ip address 172.24.45.126 255.255.255.128
+!
+interface FastEthernet0/0.7
+ encapsulation dot1Q 7
+ no ip address
+!
+interface FastEthernet0/0.8
+ encapsulation dot1Q 8
+ ip address 172.24.43.254 255.255.254.0
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ no ip address
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 172.24.46.162 255.255.255.252
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip flow-export version 9
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+end
